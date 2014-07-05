@@ -3,14 +3,16 @@ package br.com.msoftware.autenticacao;
 import javax.ejb.Stateless;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 
 @Stateless
 @Entity
 public class Login implements I_Login {
+	
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	@Id
 	@GeneratedValue
@@ -24,18 +26,7 @@ public class Login implements I_Login {
 
 	@Override
 	public boolean salvar() {
-
-		EntityManagerFactory factory =
-				   Persistence.createEntityManagerFactory("dbpoee");
-		EntityManager manager = factory.createEntityManager();
-
-		manager.getTransaction().begin();    
-		manager.persist(this);
-		manager.getTransaction().commit(); 		
-		
+		entityManager.persist(this);
 		return false;
 	}
-	
-
-
 }
