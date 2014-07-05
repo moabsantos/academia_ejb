@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="academia_ejb">
+        <wb-resource deploy-path="/" source-path="/ejbModule" tag="defaultRootSource"/>
+        <property name="java-output-path" value="/academia_ejb/build/classes"/>
+        <property name="ClientProject" value="academia_shared"/>
+        <property name="ClientJARURI" value="academia_shared.jar"/>
+    </wb-module>
+</project-modules>
