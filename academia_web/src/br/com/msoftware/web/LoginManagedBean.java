@@ -1,13 +1,15 @@
-package br.com.msoftware.autenticacao;
+package br.com.msoftware.web;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
+import br.com.msoftware.servico.Login;
+
 @ManagedBean(name="login")
-public class C_Login {
+public class LoginManagedBean {
 
 	@EJB
-	private I_Login ejbLogin;
+	private Login ejbLogin;
 	
 	final String nomeUsuario = "MOAB SANTOS DE FARIAS";
 

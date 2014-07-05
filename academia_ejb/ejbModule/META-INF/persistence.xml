@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
-             version="2.0">
-    <persistence-unit name="dbpoee" transaction-type="JTA">
-   	<jta-data-source>jdbc/dbpoee</jta-data-source>   	
-   	<class>br.com.msoftware.autenticacao.Login</class>
-    <!--
-    <properties>
-	   <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver" />
-	   <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/dbpoee" />
-	   <property name="eclipselink.jdbc.user" value="root" />
-	   <property name="eclipselink.jdbc.password" value="root" />
-    </properties>
-	           -->
-   </persistence-unit>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+	<persistence-unit name="dbpoee" transaction-type="RESOURCE_LOCAL">
+		<jta-data-source>jdbc/dbpoee</jta-data-source>
+		<class>br.com.msoftware.servico.LoginImpl</class>
+		<properties>
+			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<!--
+			<property name="eclipelink.jdbc.url" value="jdbc:mysql://localhost:3306/dbpoee" />
+			<property name="eclipelink.jdbc.user" value="root" />
+			<property name="eclipelink.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="eclipelink.jdbc.password" value="root" />
+			<property name="eclipelink.ddl-generation" value="create-tables" />
+			<property name="eclipelink.jdbc.connections.min" value="1" />
+			<property name="eclipelink.jdbc.connections.max" value="2" />
+			<property name="eclipelink.logging.level" value="FINEST" />
+			<property name="eclipselink.logging.thread" value="false" />
+			<property name="eclipselink.logging.session" value="false" />
+			<property name="eclipselink.logging.timestamp" value="false" />
+			<property name="eclipselink.logging.exceptions" value="false" />
+			<property name="eclipselink.jdbc.read-connections.min" value="1" />
+			<property name="eclipselink.jdbc.write-connections.min" value="1" />
+			<property name="eclipselink.target-database" value="MySQL" />
+			-->
+		</properties>
+	</persistence-unit>
 </persistence>

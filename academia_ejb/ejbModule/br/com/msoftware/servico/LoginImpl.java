@@ -1,4 +1,4 @@
-package br.com.msoftware.autenticacao;
+package br.com.msoftware.servico;
 
 import javax.ejb.Stateless;
 import javax.persistence.Entity;
@@ -7,9 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.PersistenceContext;
 
+import br.com.msoftware.servico.Login;
+
 @Stateless
 @Entity
-public class Login implements I_Login {
+public class LoginImpl implements Login {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -20,7 +22,6 @@ public class Login implements I_Login {
 	
 	@Override
 	public boolean getAutorizacao(String p_login, String p_senha) {
-	
 		return p_login == p_senha;
 	}
 
