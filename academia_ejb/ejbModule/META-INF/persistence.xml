@@ -6,8 +6,9 @@
 	<persistence-unit name="dbpoee" transaction-type="JTA">
 		<jta-data-source>jdbc/dbpoee</jta-data-source>
 		<class>br.com.msoftware.servico.LoginImpl</class>
+		<class>br.com.msoftware.padrao.MS_Dominio_Impl</class>
 		<properties>
-			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
 			<!--
 			<property name="eclipelink.jdbc.url" value="jdbc:mysql://localhost:3306/dbpoee" />
 			<property name="eclipelink.jdbc.user" value="root" />

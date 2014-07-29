@@ -1,14 +1,63 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
-</head>
-<body>
-<h:outputLabel value="Teste"></h:outputLabel>
-<h:outputLabel value="#{login.nomeUsuario}"></h:outputLabel>
-<h:outputLabel value="#{login.autenticacao}"></h:outputLabel>
-</body>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template.xhtml">
+    
+    <ui:define name="content">
+        <h:outputScript name="main/js/index.js" target="head" />
+        
+        <!-- highlight area start-->
+        <div class="ContentSideSections overHidden">
+            
+            <div class="Content33 floatLeft overHidden TextShadow">
+                <span class="defaultTopic mediumFont dispTable">MSsoftware</span>
+                <span class="defaultText dispTable">PrimeFaces is a popular open source framework for JavaServer Faces featuring over 100 components, touch optimized mobilekit, push framework, client side validation, theme engine and more.</span>
+                <a href="http://www.primefaces.org/downloads" class="BigButton TextShadowNone YellowBtn"> <span class="floatLeft">Download</span> <h:graphicImage name="main/images/btnArrow.svg" styleClass="floatRight"/></a>
+                <a href="http://www.primefaces.org/documentation" class="BigButton TextShadowNone OrangeBtn"> <span class="floatLeft">Documentação</span> <h:graphicImage name="main/images/btnDocumenticon.svg" class="floatRight"/></a>
+            </div>
+            
+            <div class="Content66 floatRight overHidden" style="background-image:url(#{resource['main/images/highlightCircuitLines.svg']})">
+                
+                <div class="PropertyBox TextShadow">
+                    <a href="http://www.primefaces.org/documentation">
+                    <h:graphicImage name="main/images/ajaxFramework.svg" />
+                    <span class="PropertyTopic boldFont">ADMINISTRAÇÃO</span>
+                    <span class="PropertyText mediumFont">Without Javascript<br />Declarative Updates<br />Partial Page Rendering<br />Extensions</span>
+                    </a>
+                </div>
+                
+                <div class="PropertyBox TextShadow">
+                    <h:graphicImage name="main/images/components.svg" />
+                    <span class="PropertyTopic boldFont">PRODUÇÃO</span>
+                    <span class="PropertyText mediumFont">Over 100<br />Flexible and Easy to Use<br />Built-in Ajax<br />HTML5 Support<br />Accessible</span>
+                </div>
+                <div class="PropertyBox TextShadow">
+                    <h:graphicImage name="main/images/productivity.svg" />
+                    <span class="PropertyTopic boldFont">SEGURANÇA</span>
+                    <span class="PropertyText mediumFont">Simple<br />Effective<br />Powerful<br />Lightweight</span>
+                </div>
+                <div class="PropertyBox TextShadow">
+                    <h:graphicImage name="main/images/mobile.svg" />
+                    <span class="PropertyTopic boldFont">MOBILE</span>
+                    <span class="PropertyText mediumFont">Mobile Optimized RenderKit<br />Mobile Components<br />Cross Platform<br />Same Backend</span>
+                </div>
+                <div class="PropertyBox TextShadow">
+                    <h:graphicImage name="main/images/push.svg" />
+                    <span class="PropertyTopic boldFont">PUSH</span>
+                    <span class="PropertyText mediumFont">Powered by Atmosphere<br />Websockets<br />Fallback Transports<br />Portable<br />Scalable</span>
+                </div>
+                <div class="PropertyBox TextShadow">
+                    <h:graphicImage name="main/images/themeMarket.svg" />
+                    <span class="PropertyTopic boldFont">THEMES</span>
+                    <span class="PropertyText mediumFont">35+ Available Themes<br />Premium Themes<br />Theme Creator Tool<br /></span>
+                </div>
+            </div>
+            
+        </div>
+        <!-- highlight area end-->
+
+    </ui:define>
+        
+</ui:composition>
