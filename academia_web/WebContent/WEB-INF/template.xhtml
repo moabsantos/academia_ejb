@@ -1,0 +1,306 @@
+<!DOCTYPE html [
+    <!ENTITY nbsp "&#160;">
+    <!ENTITY bull "&#8226;">
+    <!ENTITY copy "&#169;">
+]>
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <f:facet name="first">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <link rel="shortcut icon" type="image/png" href="#{request.contextPath}/resources/main/images/favicon.png" />
+    </f:facet>
+
+    <title>MSoftware</title>
+    <h:outputStylesheet name="main/css/showcase.css" />
+    <h:outputStylesheet name="main/css/perfect-scrollbar.css" />
+    <h:outputStylesheet name="main/css/sh.css" />
+    <h:outputScript name="jquery/jquery.js" library="primefaces" />
+    <h:outputScript name="jquery/jquery-plugins.js" library="primefaces" />
+    <h:outputScript name="main/js/perfect-scrollbar.js" />
+    <h:outputScript name="main/js/showcase.js" />
+    <ui:insert name="head" />
+</h:head>
+
+<h:body>
+
+    <!-- PC CONTENT STARTS HERE-->
+    <div class="PC">
+       
+       
+       
+        
+	<div id="MENUSIDE">
+    	<div id="MENUSIDEindent">
+            <span id="LOGO" class="bordersOfMenuSide">
+                <h:graphicImage name="main/images/logo.svg" />
+                <h:graphicImage id="BlueLogo" styleClass="hiddenLogo" name="main/images/logoBlue.svg" />
+            </span>
+            
+            <div class="MenuSideMainLink bordersOfMenuSide">
+            	<h:graphicImage name="main/images/zoom.svg" class="zoomIcon"/>
+            	<input id="menuSearch" type="text" placeholder="Search Menu" class="mediumFont fontSize14 mustClose searchInput"/>
+            </div>            
+            
+            <span id="SubMenu-Ajax" class="MenuSideMainLink bordersOfMenuSide" onclick="Showcase.openSubMenu(this);">
+            	<h:graphicImage name="main/images/mono/ajaxCore.svg" />
+            	<h:graphicImage styleClass="hiddenIcons" name="main/images/mono/ajaxCoreBlue.svg" />
+            	<span class="MainLinkText">Conexão</span>
+            </span>
+            
+            <div class="SubMenuLinkContainer">
+            	<a class="SubMenuLink" href="#{request.contextPath}/conexao/acesso/empresa_login.xhtml">&bull; Empresa</a>            
+            	<a class="SubMenuLink" href="#{request.contextPath}/conexao/acesso/usuario_dados.xhtml">&bull; Usuário</a>
+            	<a class="SubMenuLink" href="#{request.contextPath}/conexao/acesso/usuario_login.xhtml">&bull; Log-in</a>
+            	<a class="SubMenuLink" href="#{request.contextPath}/conexao/acesso/usuario_logoff.xhtml">&bull; Log-off</a>            
+            </div>
+            
+            <span id="SubMenu-Input" class="MenuSideMainLink bordersOfMenuSide" onclick="Showcase.openSubMenu(this);"><h:graphicImage name="main/images/mono/input.svg" /><h:graphicImage styleClass="hiddenIcons" name="main/images/mono/inputBlue.svg" /><span class="MainLinkText">Cadastros</span></span>
+            <div class="SubMenuLinkContainer">
+                <a class="SubMenuLink" href="#{request.contextPath}/ui/input/autoComplete.xhtml">&bull; Produto</a>
+                <a class="SubMenuLink" href="#{request.contextPath}/ui/input/autoComplete.xhtml">&bull; Máquina</a>
+                <a class="SubMenuLink" href="#{request.contextPath}/ui/input/autoComplete.xhtml">&bull; Grupo Parada</a>
+                <a class="SubMenuLink" href="#{request.contextPath}/ui/input/autoComplete.xhtml">&bull; Tipo Parada</a>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+        
+    <script type="text/javascript">
+        restoreMenuState();
+    </script>
+    
+    <div id="CONTENTSIDE">
+    	<div id="CONTENTSIDEindent">
+            
+        	<!-- header bar start-->
+			<div class="ContentSideSections" id="PFTopLinksCover" style="height:60px;">
+			
+                <a id="LOGOTEXTSIDE" href="#{request.contextPath}/index.xhtml">
+                    <span class="dispBlock logoDarkText fontSize30">Projeto</span>
+                    <span class="dispBlock logoBlueText fontSize30 mediumFont">Industrial</span>
+                </a>
+                
+                <a href="#{request.contextPath}/ui/misc/mockosx.xhtml" class="PFTopLinks floatRight boldFont marginRight20"><h:graphicImage name="main/images/pfMockosx.svg" /><span class="PFGrayText">MS</span><span class="PFDarkText">MockOSX</span></a>
+                
+                <a href="http://www.primefaces.org/showcase-ext" class="PFTopLinks floatRight boldFont"><h:graphicImage name="main/images/pfExtensions.svg" /><span class="PFGrayText">MS</span><span class="PFDarkText">Cadastro</span></a>
+                
+                <span class="PFTopLinks floatRight boldFont cursorPointer" id="pushNav">
+                    <h:graphicImage name="main/images/pfPush.svg" /><span class="PFGrayText">MS</span><span class="PFDarkText">Conect</span>
+                    <div id="PushDemos" class="navOverlay">
+                        <a href="#{request.contextPath}/push/counter.xhtml"><span class="ui-text">Counter</span></a>
+                        <a href="#{request.contextPath}/push/chat.xhtml"><span class="ui-text">Chat</span></a>
+                        <a href="#{request.contextPath}/push/notify.xhtml"><span class="ui-text">Notify</span></a>
+                        <a href="#{request.contextPath}/mobile/checkin.xhtml"><span class="ui-text">Checkin</span></a>
+                        <a href="#{request.contextPath}/push/viewparam.xhtml"><span class="ui-text">ViewParam</span></a>
+                        <a href="#{request.contextPath}/push/chart.xhtml"><span class="ui-text">Chart</span></a>
+                    </div>
+                </span>
+                <a href="#{request.contextPath}/mobile/index.xhtml" class="PFTopLinks floatRight boldFont"><h:graphicImage name="main/images/pfMobile.svg" /><span class="PFGrayText">PF</span><span class="PFDarkText">Mobile</span></a>
+                <span class="PFTopLinks floatRight boldFont cursorPointer" id="themeSwitcher">
+                    <h:form>
+                        <h:graphicImage name="main/images/themeswitcher.svg" /><span class="PFGrayText">PF</span><span class="PFDarkText">Themes</span>
+                        <div id="GlobalThemeSwitcher" class="navOverlay">
+                            <ui:repeat value="#{themeSwitcherView.themes}" var="theme">
+                                <a href="#" data-theme="#{theme.name}"><span class="ui-theme ui-theme-#{theme}"></span><span class="ui-text">#{theme.displayName}</span></a>
+                            </ui:repeat>
+                        </div>
+                        <p:remoteCommand name="changeTheme" actionListener="#{guestPreferences.changeTheme}" />
+                    </h:form>
+                </span>
+                
+                <div class="mobileLogoCover">
+                    <h:graphicImage name="main/images/logoBlue.svg" style="height:40px;" styleClass="floatLeft marginRight10"/>
+                    <span class="dispBlock logoDarkText fontSize16 floatLeft">PrimeFaces <span class="dispBlock logoBlueText fontSize18 mediumFont">SHOWCASE</span></span> 
+                </div>
+                <select id="mobilemenu" class="selectmenu mediumFont">
+                    <option value="">Menu</option>
+                    <option value="#{request.contextPath}/index.xhtml" class="LEVEL1">Home</option>
+                    <optgroup label="Ajax Framework" class="LEVEL1">
+                        <option value="#{request.contextPath}/ui/ajax/basic.xhtml">Basic</option>    
+                    </optgroup>
+                    <optgroup label="Input" class="LEVEL1">
+                        <option value="#{request.contextPath}/ui/input/autoComplete.xhtml">AutoComplete</option>
+                    </optgroup>
+                    <optgroup label="Button" class="LEVEL1">
+                        <option value="#{request.contextPath}/ui/button/button.xhtml">Button</option>
+                    </optgroup>
+                    <optgroup label="Data" class="LEVEL1">
+                        <option value="#{request.contextPath}/ui/data/carousel.xhtml">Carousel</option>
+                    </optgroup>
+                    <optgroup label="Panel" class="LEVEL1">
+                        <option value="#{request.contextPath}/ui/panel/accordionPanel.xhtml">Accordion</option>
+                    </optgroup>
+                    <optgroup label="Overlay" class="LEVEL1">
+                        <option value="#{request.contextPath}/ui/overlay/confirmDialog.xhtml">ConfirmDialog</option>
+                    </optgroup>
+                    <optgroup label="Menu" class="LEVEL1">
+                        <option value="#{request.contextPath}/ui/menu/breadcrumb.xhtml">Breadcrumb</option>
+                        <option value="#{request.contextPath}/ui/menu/contextmenu/basic.xhtml">ContextMenu - Basic</option>
+                        <option value="#{request.contextPath}/ui/menu/contextmenu/tiered.xhtml">ContextMenu - Tiered</option>
+                        <option value="#{request.contextPath}/ui/menu/contextmenu/target.xhtml">ContextMenu - Target</option>
+                        <option value="#{request.contextPath}/ui/data/datatable/contextMenu.xhtml">ContextMenu - DataTable</option>
+                        <option value="#{request.contextPath}/ui/data/tree/contextMenu.xhtml">ContextMenu - Tree</option>
+                        <option value="#{request.contextPath}/ui/data/treetable/contextMenu.xhtml">ContextMenu - TreeTable</option>
+                        <option value="#{request.contextPath}/ui/menu/dock.xhtml">Dock</option>
+                        <option value="#{request.contextPath}/ui/menu/megaMenu.xhtml">MegaMenu</option>
+                        <option value="#{request.contextPath}/ui/menu/menu.xhtml">Menu</option>
+                        <option value="#{request.contextPath}/ui/menu/menubar.xhtml">Menubar</option>
+                        <option value="#{request.contextPath}/ui/menu/menuButton.xhtml">MenuButton</option>
+                        <option value="#{request.contextPath}/ui/menu/panelMenu.xhtml">PanelMenu</option>
+                        <option value="#{request.contextPath}/ui/menu/slideMenu.xhtml">SlideMenu</option>
+                        <option value="#{request.contextPath}/ui/menu/stack.xhtml">Stack</option>
+                        <option value="#{request.contextPath}/ui/menu/tabMenu.xhtml">TabMenu</option>
+                        <option value="#{request.contextPath}/ui/menu/tieredMenu.xhtml">TieredMenu</option>
+                    </optgroup>
+                    <optgroup label="Charts" class="LEVEL1">
+                        <option value="#{request.contextPath}/ui/chart/area.xhtml">Area</option>
+                        <option value="#{request.contextPath}/ui/chart/bar.xhtml">Bar</option>
+                        <option value="#{request.contextPath}/ui/chart/bubble.xhtml">Bubble</option>
+                        <option value="#{request.contextPath}/ui/chart/donut.xhtml">Donut</option>
+                        <option value="#{request.contextPath}/ui/chart/line.xhtml">Line</option>
+                        <option value="#{request.contextPath}/ui/chart/pie.xhtml">Pie</option>
+                        <option value="#{request.contextPath}/ui/chart/metergauge.xhtml">MeterGauge</option>
+                        <option value="#{request.contextPath}/ui/chart/ohlc.xhtml">OHLC</option>
+                        <option value="#{request.contextPath}/ui/chart/animate.xhtml">Animate</option>
+                        <option value="#{request.contextPath}/ui/chart/export.xhtml">Export</option>
+                        <option value="#{request.contextPath}/ui/chart/interactive.xhtml">Interactive</option>
+                        <option value="#{request.contextPath}/ui/chart/live.xhtml">Live</option>
+                        <option value="#{request.contextPath}/ui/chart/static.xhtml">Static</option>
+                        <option value="#{request.contextPath}/ui/chart/zoom.xhtml">Zoom</option>
+                        <option value="#{request.contextPath}/ui/chart/combined.xhtml">Combined</option>
+                        <option value="#{request.contextPath}/ui/chart/multiaxis.xhtml">MultiAxis</option>
+                        <option value="#{request.contextPath}/ui/chart/date.xhtml">Date</option>
+                    </optgroup>
+                    <optgroup label="Messages" class="LEVEL1">
+                        <option value="#{request.contextPath}/ui/message/growl.xhtml">Growl</option>
+                        <option value="#{request.contextPath}/ui/message/messages.xhtml">Messages</option>
+                    </optgroup>
+                    <optgroup label="Multimedia" class="LEVEL1">
+                        <option value="#{request.contextPath}/ui/multimedia/compare.xhtml">Compare</option>
+                        <option value="#{request.contextPath}/ui/multimedia/contentFlow.xhtml">ContentFlow</option>
+                        <option value="#{request.contextPath}/ui/multimedia/cropper.xhtml">Cropper</option>
+                        <option value="#{request.contextPath}/ui/multimedia/galleria.xhtml">Galleria</option>
+                        <option value="#{request.contextPath}/ui/multimedia/graphicImage.xhtml">GraphicImage</option>
+                        <option value="#{request.contextPath}/ui/multimedia/media.xhtml">Media</option>
+                        <option value="#{request.contextPath}/ui/multimedia/photoCam.xhtml">PhotoCam</option>
+                        <option value="#{request.contextPath}/ui/multimedia/switch.xhtml">Switch</option>
+                    </optgroup>
+                    <optgroup label="File" class="LEVEL1">
+                        <option value="#{request.contextPath}/ui/file/upload/basic.xhtml">Upload - Basic</option>
+                        <option value="#{request.contextPath}/ui/file/upload/auto.xhtml">Upload - Auto</option>
+                        <option value="#{request.contextPath}/ui/file/upload/single.xhtml">Upload - Single</option>
+                        <option value="#{request.contextPath}/ui/file/upload/multiple.xhtml">Upload - Multiple</option>
+                        <option value="#{request.contextPath}/ui/file/upload/dnd.xhtml">Upload - DragDrop</option>
+                        <option value="#{request.contextPath}/ui/file/download.xhtml">Download</option>
+                    </optgroup>
+                    <optgroup label="DragDrop" class="LEVEL1">
+                        <option value="#{request.contextPath}/ui/dnd/draggable.xhtml">Draggable</option>
+                        <option value="#{request.contextPath}/ui/dnd/dataGrid.xhtml">DataGrid</option>
+                        <option value="#{request.contextPath}/ui/dnd/dataTable.xhtml">DataTable</option>
+                        <option value="#{request.contextPath}/ui/dnd/custom.xhtml">Custom</option>
+                    </optgroup>
+                    <optgroup label="Client Side Validation" class="LEVEL1">
+                        <option value="#{request.contextPath}/ui/csv/basic.xhtml">Basic</option>
+                        <option value="#{request.contextPath}/ui/csv/bean.xhtml">Bean</option>
+                        <option value="#{request.contextPath}/ui/csv/custom.xhtml">Custom</option>
+                        <option value="#{request.contextPath}/ui/csv/event.xhtml">Event</option>
+                    </optgroup>
+                    <optgroup label="Dialog Framework" class="LEVEL1">
+                        <option value="#{request.contextPath}/ui/df/basic.xhtml">Basic</option>
+                        <option value="#{request.contextPath}/ui/df/data.xhtml">Data</option>
+                        <option value="#{request.contextPath}/ui/df/message.xhtml">Message</option>
+                    </optgroup>
+                    <optgroup label="Misc" class="LEVEL1">
+                        <option value="#{request.contextPath}/ui/misc/blockUI.xhtml">BlockUI</option>
+                    </optgroup>
+                    <option value="#{request.contextPath}/mobile/index.xhtml" class="LEVEL1">PFMobile</option>
+                    <optgroup label="PFPush" class="LEVEL1">
+                        <option value="#{request.contextPath}/push/counter.xhtml">Counter</option>
+                    </optgroup>
+                    <option value="#{request.contextPath}/ui/misc/mockosx.xhtml" class="LEVEL1">PFMockOSX</option>
+                </select>
+            </div>
+            <!-- header bar end-->
+
+            <ui:insert name="content">
+                
+                <ui:insert name="subsubmenu"></ui:insert>
+                
+                <div class="ContentSideSections">
+                    <div class="Content100 overHidden TextShadow">
+                        <span class="fontSize30 TextShadow orange mediumFont marginBottom20 dispBlock"><ui:insert name="title" /></span>
+                        <span class="defaultText dispTable"><ui:insert name="description" />
+                        </span>
+                    </div>
+                </div>
+
+                <div class="ContentSideSections Implementation">
+                    <ui:insert name="implementation" />
+                </div>
+
+                <div id="SourceContentSide" class="ContentSideSections Source">
+                    <div class="Content100 overHidden TextShadow">
+                        <span class="defaultText">
+                            <span class="fontSize18 logoBlueText">
+                                <ui:insert name="source" />
+                            </span>
+                        </span>
+                    </div>
+                </div>
+           
+            </ui:insert>
+            
+            <!-- footer start-->
+            <div class="ContentSideSections">
+                <span class="floatLeft fontSize14 gray"><a href="http://www.primetek.com.tr">MSoftware</a>, Copyright &copy; 2014<br />All rights reserved.</span>
+                <span class="floatRight fontSize14 gray">Running #{build.primefacesVersion} on #{build.jsfVersion}.</span>
+                <div style="clear:both" />
+            </div>
+            <!-- footer end-->
+            
+        </div>
+    </div>
+    
+    </div>
+    <!-- PC CONTENT END-->
+    
+    
+    
+    
+    
+     <ui:insert name="status">
+        <p:ajaxStatus style="width:64px;height:64px;position:fixed;right:5px;bottom:5px">
+            <f:facet name="start">
+                <p:graphicImage name="main/images/loader.gif" />
+            </f:facet>
+
+            <f:facet name="complete">
+                <h:outputText value="" />
+            </f:facet>
+        </p:ajaxStatus>
+    </ui:insert>
+    
+    
+    
+    
+    
+    <ui:insert name="highlight">
+        <script language="javascript" src="#{request.contextPath}/resources/main/js/sh.js"></script>
+        <script language="javascript">SyntaxHighlighter.all();</script>
+    </ui:insert>
+    
+    
+    
+    
+    
+    <ui:insert name="body"></ui:insert>
+</h:body>
+</html>

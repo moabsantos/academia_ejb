@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template.xhtml">
+    
+    <ui:define name="content">
+    
+        <h:outputScript name="main/js/index.js" target="head" />
+
+        <!-- pfnextgen start-->
+        <div class="ContentSideSections overHidden PFNextGen">
+        
+            <div class="Content33 floatLeft overHidden TextShadow">
+                <span class="fontSize30 TextShadow gray mediumFont marginBottom20 dispBlock">MS<span class="orange">Login</span></span>
+                <span class="defaultText dispTable">O acesso ao sistema é restrito ao usuário cadastrado.</span>
+                <br />
+                <span class="defaultText dispTable">As permissões devem ser definidas no momento do cadastro.</span>
+            </div>
+
+            <div class="Content66 floatLeft overHidden">
+            	<h:form id="form1">
+            	
+				    <p:panel id="panel" header="Dados de Acesso" footer="* Campos obrigatórios">
+
+            	   		<p:messages id="msgs" globalOnly="true" showDetail="true" autoUpdate="true" closable="true" />    				
+				    							 				 
+				        <h:panelGrid columns="3" cellpadding="5">
+
+							<p:outputLabel for="empresausuario" value="Empresa" />
+				            <p:selectOneMenu effect="fade" id="empresausuario">				            
+						         <f:selectItems value="#{login.dominios}"
+						                var="emp"
+						                itemLabel="#{emp.nome}"
+						                itemValue="#{emp.id}"
+						         />
+							</p:selectOneMenu>
+				            <p:message for="empresausuario" />
+
+
+				            <p:outputLabel for="nomeusuario" value="Login" />
+					            <p:inputText id="nomeusuario" value="#{login.nomeUsuario}" required="true" label="Usuário">
+					                <f:validateLength minimum="2" />
+					            </p:inputText>
+				            <p:message for="nomeusuario" display="icon" />
+
+							<p:outputLabel for="senhausuario" value="Senha" />
+					            <p:password id="senhausuario" value="#{login.senhaUsuario}" label="Senha">
+					                <f:validateLength minimum="2" />
+					            </p:password>
+				            <p:message for="senhausuario" display="icon" />
+				            
+
+				        </h:panelGrid>
+				 
+				        <p:commandButton value="Save" update="panel" actionListener="#{login.save}" icon="ui-icon-check" />
+				        
+				        <p:commandButton value="Acessar" update="panel" actionListener="#{login.acessar}" icon="ui-icon-check" />
+				        
+				    </p:panel>
+				    
+                </h:form>
+            </div>
+            
+        </div>
+        <!-- pfnextgen end-->
+
+    </ui:define>
+        
+</ui:composition>
