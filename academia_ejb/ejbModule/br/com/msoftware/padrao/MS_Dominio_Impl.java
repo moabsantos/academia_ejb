@@ -1,18 +1,18 @@
 package br.com.msoftware.padrao;
 
-import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import br.com.msoftware.db.DataSetImpl;
 import br.com.msoftware.padrao.MS_Dominio;
 
 
 @Stateless
-@Entity(name="SEGUR_0002")
+@Entity
+@Table(name="SEGUR_0002")
 public class MS_Dominio_Impl extends DataSetImpl implements MS_Dominio {
 
 	@Id
@@ -21,13 +21,6 @@ public class MS_Dominio_Impl extends DataSetImpl implements MS_Dominio {
 	
 	private String nome;
 	private String observacao;	
-	
-	@Override
-	public List listaDominios() {
-		
-		return this.listByString("SEGUR_0002", "nome", "Santa Clara");
-		
-	}
 
 	public Long getId(){
 		
@@ -52,24 +45,16 @@ public class MS_Dominio_Impl extends DataSetImpl implements MS_Dominio {
 	}
 
 	@Override
-	public MS_Dominio_Impl getByString(String p_parametro, String p_valor) {
-		
-		return (MS_Dominio_Impl) getByString("SEGUR_0002", p_parametro, p_valor);
-		
-	}
-	
-	@Override
-	public MS_Dominio_Impl novoObjeto() {
-
-		return new MS_Dominio_Impl();
-		
-	}
-
-	@Override
 	public void atualizar(String p_nome, String p_observacao) {
 		
 		this.setNome(p_nome);
 		this.setObservacao(p_observacao);
+		
+	}
+
+	public MS_Dominio_Impl novoObjeto() {
+
+		return new MS_Dominio_Impl();
 		
 	}
 

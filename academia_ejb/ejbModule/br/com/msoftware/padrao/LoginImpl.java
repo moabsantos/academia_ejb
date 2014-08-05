@@ -1,15 +1,17 @@
-package br.com.msoftware.servico;
+package br.com.msoftware.padrao;
 
 import javax.ejb.Stateless;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import br.com.msoftware.db.DataSetImpl;
-import br.com.msoftware.servico.Login;
+import br.com.msoftware.padrao.Login;
 
 @Stateless
-@Entity(name="SEGUR_0001")
+@Entity
+@Table(name="SEGUR_0001")
 public class LoginImpl extends DataSetImpl implements Login {
 
 	@Id
@@ -19,12 +21,6 @@ public class LoginImpl extends DataSetImpl implements Login {
 	private String nome;
 	private String senha;
 	private String observacao;
-	
-	public boolean getAutorizacao(String p_login, String p_senha) {
-		
-		return (p_login.equals(this.getNome())) && (p_senha.equals(this.getSenha()));
-		
-	}
 
 	public String getNome() {
 		return nome;
@@ -43,51 +39,47 @@ public class LoginImpl extends DataSetImpl implements Login {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	@Override
-	public LoginImpl getById(Long p_id) {
-		
-		return entityManager.find(LoginImpl.class, p_id);
-		
-	}
 
-	@Override
 	public boolean mudarSenha(String p_login, String p_senha_atual,
-			String p_senha_nova) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+			String p_senha_nova, String p_conf_senha_nova) {
 
-	@Override
-	public boolean getUsuarios(String p_login, String p_senha_atual,
-			String p_senha_nova) {
-		// TODO Auto-generated method stub
-		return false;
+		if (this.getAutorizacao(p_login, p_senha_atual)){
+			
+			if (p_senha_nova.equals(p_conf_senha_nova)){
+				
+				return this.getAutorizacao(p_login, p_conf_senha_nova);
+				
+			}else{
+			
+				return false;
+				
+			}
+			
+		}else{
+		
+			return false;
+			
+		}
 	}
 
 	public String getObservacao() {
+		
 		return observacao;
+		
 	}
 
 	public void setObservacao(String observacao) {
+		
 		this.observacao = observacao;
-	}
-
-	@Override
-	public LoginImpl novoObjeto() {
-
-		return new LoginImpl();
 		
 	}
 
-	@Override
-	public LoginImpl getByString(String p_parametro, String p_valor) {
-
-		return (LoginImpl) getByString("SEGUR_0001", p_parametro, p_valor);
+	public boolean getAutorizacao(String p_login, String p_senha) {
 		
-	}
-
-
+		return (p_login.equals(this.getNome())) && (p_senha.equals(this.getSenha()));
+		
+	}	
+	
 	public boolean setAutorizacao(String p_login, String p_senha) {
 		
 		this.setNome(p_login);
@@ -95,4 +87,11 @@ public class LoginImpl extends DataSetImpl implements Login {
 		
 		return true;
 	}
+
+	public LoginImpl novoObjeto() {
+		
+		return new LoginImpl();
+		
+	}
+	
 }

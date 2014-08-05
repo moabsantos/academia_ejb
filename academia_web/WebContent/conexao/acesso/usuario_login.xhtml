@@ -3,6 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:edt="http://java.sun.com/jsf/composite/mylib"
 	template="/WEB-INF/template.xhtml">
     
     <ui:define name="content">
@@ -39,11 +40,7 @@
 				            <p:message for="empresausuario" />
 
 
-				            <p:outputLabel for="nomeusuario" value="Login" />
-					            <p:inputText id="nomeusuario" value="#{login.nomeUsuario}" required="true" label="Usuário">
-					                <f:validateLength minimum="2" />
-					            </p:inputText>
-				            <p:message for="nomeusuario" display="icon" />
+				            <edt:editPadrao nome="nomeusuario" valor="#{login.nomeUsuario}" legenda="Usuário"/>
 
 							<p:outputLabel for="senhausuario" value="Senha" />
 					            <p:password id="senhausuario" value="#{login.senhaUsuario}" label="Senha">
@@ -54,7 +51,7 @@
 
 				        </h:panelGrid>
 				 
-				        <p:commandButton value="Save" update="panel" actionListener="#{login.save}" icon="ui-icon-check" />
+				        <p:commandButton value="Save" update="panel" actionListener="#{login.salvar}" icon="ui-icon-check" />
 				        
 				        <p:commandButton value="Acessar" update="panel" actionListener="#{login.acessar}" icon="ui-icon-check" />
 				        

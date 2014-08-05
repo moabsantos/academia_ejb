@@ -6,41 +6,28 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-public class DataSetImpl implements DataSet {
+public abstract class DataSetImpl implements DataSet {
 
 	@PersistenceContext(name="dbpoee")
 	protected EntityManager entityManager;
 	
-	@Override
-	public boolean salvar(DataSet obj) {
+
+	public DataSetImpl salvar(DataSet obj) {
 		
 		entityManager.merge(obj);
 		
-		return false;
+		entityManager.flush();
+		
+		return (DataSetImpl) obj;
 		
 	}
 
-	@Override
-	public boolean salvar() {
-		
-		return false;
-	}
 
-	@Override
-	public DataSetImpl getById(Long p_id) {
+	public DataSet getById(Long p_id) {
 		
-		return null;
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public DataSet getByString(String p_tabela, String p_parametro, String p_valor) {
 		try{
 			
-			Query q = entityManager.createQuery("SELECT e FROM " + p_tabela + " e WHERE e."+  p_parametro +" = :" + p_parametro);
-		
-			q.setParameter(p_parametro, p_valor);
+			Query q = entityManager.createQuery("SELECT e FROM " + this.getClass().getSimpleName() + " e WHERE e.id = :" + p_id);
 		
 			return (DataSet) q.getSingleResult();
 		
@@ -49,23 +36,44 @@ public class DataSetImpl implements DataSet {
 	        return null;
 			
 		}
+		
 	}
 
-	@Override
-	public List listByString(String p_tabela, String p_parametro,
+
+	public DataSetImpl getByString(String p_parametro, String p_valor) {
+		
+		try{
+			
+			Query q = entityManager.createQuery("SELECT e FROM " + this.getClass().getSimpleName() + " e WHERE e."+  p_parametro +" = :" + p_parametro);
+		
+			q.setParameter(p_parametro, p_valor);
+		
+			return (DataSetImpl) q.getSingleResult();
+		
+		}catch(Exception e){
+	        
+	        return null;
+			
+		}
+	}
+
+
+	public List<?> listByString(String p_parametro,
 			String p_valor) {
 
-		Query q = entityManager.createQuery("SELECT e FROM " + p_tabela + " e WHERE e."+  p_parametro +" = :" + p_parametro);
+		Query q = entityManager.createQuery("SELECT e FROM " + this.getClass().getSimpleName() + " e WHERE e."+  p_parametro +" = :" + p_parametro);
 		
 		q.setParameter(p_parametro, p_valor);
 		
 		return q.getResultList();
+		
 	}
 
-	@Override
-	public DataSet novoObjeto() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<?> listaCompleta() {
+
+		Query q = entityManager.createQuery("SELECT e FROM " + this.getClass().getSimpleName() + " e");
+		
+		return q.getResultList();
 	}
 	
 }
