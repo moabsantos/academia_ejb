@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/WEB-INF/template.xhtml">
+ 
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="nome" required="true" type="String"/>
+        <cc:attribute name="valor" required="true" type="String"/>
+        <cc:attribute name="legenda" required="true" type="String"/>
+    </cc:interface>
+ 
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+
+	    		<p:outputLabel for="#{cc.attrs.nome}" value="#{cc.attrs.legenda}" />
+	    		<br/>
+
+				<p:inputText id="#{cc.attrs.nome}" value="#{cc.attrs.valor}" label="#{cc.attrs.legenda}" />
+
+				<p:message for="#{cc.attrs.nome}" display="icon" />
+
+    </cc:implementation>
+</ui:composition>

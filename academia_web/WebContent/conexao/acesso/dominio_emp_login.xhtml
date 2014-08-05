@@ -1,0 +1,81 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+    xmlns:edt="http://java.sun.com/jsf/composite/mylib"
+	template="/WEB-INF/template.xhtml">
+    
+    <ui:define name="content">
+    
+        <h:outputScript name="main/js/index.js" target="head" />
+
+        <!-- pfnextgen start-->
+        <div class="ContentSideSections overHidden PFNextGen">
+        
+            <div class="Content33 floatLeft overHidden TextShadow">
+                <span class="fontSize30 TextShadow gray mediumFont marginBottom20 dispBlock">MS<span class="orange">Domínio</span></span>
+                <span class="defaultText dispTable">O acesso ao sistema é restrito ao usuário cadastrado.</span>
+                <br />
+                <span class="defaultText dispTable">As permissões devem ser definidas no momento do cadastro.</span>
+            </div>
+
+            <div class="Content66 floatLeft overHidden">
+            	<h:form id="form1">
+            	
+				    <p:panel id="panel" header="Domínio" footer="* Campos obrigatórios">
+    				
+				        <h:panelGrid columns="1" cellpadding="5" >
+				            <edt:editPadrao nome="nomedominio" valor="#{dominio.objDominio.nome}" legenda="Domínio"/>
+				            <edt:editPadrao nome="obsdominio" valor="#{dominio.objDominio.observacao}" legenda="Observação"/>
+				        </h:panelGrid>
+				 
+				 		<p:commandButton value="Novo" update="panel" actionListener="#{dominio.novo}" icon="ui-icon-check" />
+				        <p:commandButton value="Savar" update=":formTab" actionListener="#{dominio.salvar}" icon="ui-icon-check" />
+				        <p:commandButton value="Cancelar" update="panel" actionListener="#{dominio.cancelar}" icon="ui-icon-check" />
+				        <p:commandButton value="Excluir" update="panel" actionListener="#{dominio.excluir}" icon="ui-icon-check" />
+				    </p:panel>
+				    
+                </h:form>
+            </div>
+          
+        </div>
+            
+	    <div class="ContentSideSections overHidden">
+	    <h:form id="formTab">
+		    <p:growl id="growl" showDetail="true" autoUpdate="true"/>
+		    <p:dataTable id="dominiosTable" var="emp" value="#{dominio.listaDominios}" 
+		    		selectionMode="single" selection="#{dominio.objDominio}" rowKey="#{emp.id}">
+		    	<p:ajax event="rowSelect" listener="#{dominio.onRowSelect}" update=":form1:panel" />
+		        
+		        <p:column style="width:49%">  
+		        	<f:facet name="header">  
+		            	Id  
+		         	</f:facet>  
+		            <h:outputText value="#{emp.id}" />  
+		        </p:column>
+		        
+		        <p:column style="width:49%">  
+		        	<f:facet name="header">  
+		            	Nome  
+		         	</f:facet>  
+		            <h:outputText value="#{emp.nome}" />  
+		        </p:column>
+	        
+	        	<p:column style="width:49%">  
+		        	<f:facet name="header">  
+		            	Observação  
+		         	</f:facet>  
+		            <h:outputText value="#{emp.observacao}" />  
+		        </p:column>
+	        
+	        </p:dataTable> 
+	    </h:form>
+		</div>   
+		
+		     
+        <!-- pfnextgen end-->
+
+    </ui:define>
+        
+</ui:composition>
