@@ -2,26 +2,18 @@ package br.com.msoftware.padrao;
 
 import javax.ejb.Stateless;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
-
-import br.com.msoftware.db.DataSetImpl;
 import br.com.msoftware.padrao.Login;
 
 @Stateless
 @Entity
 @Table(name="SEGUR_0001")
-public class LoginImpl extends DataSetImpl implements Login {
-
-	@Id
-	@GeneratedValue
-	private Long id;
+public class LoginImpl extends MS_Classe_Padrao implements Login {
 	
 	private String nome;
 	private String senha;
 	private String observacao;
-
+	
 	public String getNome() {
 		return nome;
 	}

@@ -22,40 +22,41 @@
 
             <div class="Content66 floatLeft overHidden">
             	<h:form id="form1">
-            	
-				    <p:panel id="panel" header="Domínio" footer="* Campos obrigatórios">
+            		<p:growl id="growl" showDetail="true" autoUpdate="true"/>
+				    <p:panel id="pnlForm1" header="Domínio" footer="* Campos obrigatórios">
     				
-				        <h:panelGrid columns="1" cellpadding="5" >
-				            <edt:editPadrao nome="nomedominio" valor="#{dominio.objDominio.nome}" legenda="Domínio"/>
-				            <edt:editPadrao nome="obsdominio" valor="#{dominio.objDominio.observacao}" legenda="Observação"/>
+				        <h:panelGrid id="grdForm1" columns="1" cellpadding="5" >
+							<edt:editPadrao nome="iddominio" valor="#{dominio.objDominio.id}" legenda="Id" tamanho="10"/>
+				            <edt:editPadrao nome="nomedominio" valor="#{dominio.objDominio.nome}" legenda="Nome do Domínio" requerido="true"/>
+				            <edt:editPadrao nome="obsdominio" valor="#{dominio.objDominio.observacao}" legenda="Observação" requerido="true" tamanho="80"/>
 				        </h:panelGrid>
 				 
-				 		<p:commandButton value="Novo" update="panel" actionListener="#{dominio.novo}" icon="ui-icon-check" />
-				        <p:commandButton value="Savar" update=":formTab" actionListener="#{dominio.salvar}" icon="ui-icon-check" />
-				        <p:commandButton value="Cancelar" update="panel" actionListener="#{dominio.cancelar}" icon="ui-icon-check" />
-				        <p:commandButton value="Excluir" update="panel" actionListener="#{dominio.excluir}" icon="ui-icon-check" />
+				 		
 				    </p:panel>
 				    
-                </h:form>
+				    <p:commandButton value="Limpar" update="pnlForm1" type="reset" icon="ui-icon-check" />
+				    <p:commandButton value="Savar" update="pnlForm1, :formTab:dominiosTab" actionListener="#{dominio.salvar}" icon="ui-icon-check" />
+				    <p:commandButton value="Excluir" update="pnlForm1, :formTab:dominiosTab" actionListener="#{dominio.excluir}" icon="ui-icon-check" />
+				    
+          		</h:form>
             </div>
-          
         </div>
-            
+
 	    <div class="ContentSideSections overHidden">
-	    <h:form id="formTab">
+			<h:form id="formTab">
 		    <p:growl id="growl" showDetail="true" autoUpdate="true"/>
-		    <p:dataTable id="dominiosTable" var="emp" value="#{dominio.listaDominios}" 
+		    <p:dataTable id="dominiosTab" var="emp" value="#{dominio.listaDominios}" 
 		    		selectionMode="single" selection="#{dominio.objDominio}" rowKey="#{emp.id}">
-		    	<p:ajax event="rowSelect" listener="#{dominio.onRowSelect}" update=":form1:panel" />
+		    	<p:ajax event="rowSelect" listener="#{dominio.onRowSelect}" update=":form1:pnlForm1" />
 		        
-		        <p:column style="width:49%">  
+		        <p:column style="width:10%">  
 		        	<f:facet name="header">  
 		            	Id  
 		         	</f:facet>  
 		            <h:outputText value="#{emp.id}" />  
 		        </p:column>
 		        
-		        <p:column style="width:49%">  
+		        <p:column style="width:29%">  
 		        	<f:facet name="header">  
 		            	Nome  
 		         	</f:facet>  
@@ -70,12 +71,12 @@
 		        </p:column>
 	        
 	        </p:dataTable> 
-	    </h:form>
+			</h:form>	
 		</div>   
 		
 		     
         <!-- pfnextgen end-->
-
+	
     </ui:define>
-        
+ 	     
 </ui:composition>

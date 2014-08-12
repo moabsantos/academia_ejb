@@ -10,21 +10,21 @@ import javax.faces.bean.RequestScoped;
 
 import org.primefaces.event.SelectEvent;
 
-import br.com.msoftware.padrao.MS_Dominio;
+import br.com.msoftware.padrao.MS_Dominio_Empresas;
 
 @ManagedBean(name="dominio")
 @RequestScoped
 public class DominioManagedBean extends PadraoManagedBean {
 
-	@EJB private MS_Dominio ejbDominio;
+	@EJB private MS_Dominio_Empresas ejbDominio;
 	private List<?> listaDominios;
-	private MS_Dominio objDominio;
+	private MS_Dominio_Empresas objDominio;
 	
 	public void salvar(){	
 	    	
         try{
         	
-        	this.setObjDominio((MS_Dominio) ejbDominio.salvar(this.getObjDominio()));
+        	this.setObjDominio((MS_Dominio_Empresas) ejbDominio.salvar(this.getObjDominio()));
     			
     		this.addMensagem( FacesMessage.SEVERITY_WARN, "Welcome ", "Dominio Salvo");
 	        
@@ -37,12 +37,14 @@ public class DominioManagedBean extends PadraoManagedBean {
 	}
 
 	public void novo() throws IOException {
-		// TODO Auto-generated method stub
+		
+		this.setObjDominio(null);
 		
 	}
 
 	public void cancelar() throws IOException {
-		// TODO Auto-generated method stub
+		
+		this.setObjDominio((MS_Dominio_Empresas) ejbDominio.getById(objDominio.getId()));
 		
 	}
 
@@ -59,30 +61,26 @@ public class DominioManagedBean extends PadraoManagedBean {
 		
 	}
 
-	public MS_Dominio getObjDominio() {
+	public MS_Dominio_Empresas getObjDominio() {
 		
 		if (this.objDominio == null){
 			
-			this.setObjDominio((MS_Dominio) ejbDominio.novoObjeto());
+			this.setObjDominio((MS_Dominio_Empresas) ejbDominio.novoObjeto());
 			
 		}
 		
 		return this.objDominio;
 	}
 
-	public void setObjDominio(MS_Dominio objDominio) {
-		
-		this.addMensagem( FacesMessage.SEVERITY_WARN, "Welcome ", "SET 1");
+	public void setObjDominio(MS_Dominio_Empresas objDominio) {
 		
 		this.objDominio = objDominio;
-		
-		this.addMensagem( FacesMessage.SEVERITY_WARN, "Welcome ", "SET 2");
 		
 	}
 	
 	public void onRowSelect(SelectEvent event) {
 		
-        this.setObjDominio((MS_Dominio) event.getObject());
+        this.setObjDominio((MS_Dominio_Empresas) event.getObject());
         
     }
 

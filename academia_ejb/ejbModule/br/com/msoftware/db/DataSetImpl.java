@@ -1,28 +1,37 @@
 package br.com.msoftware.db;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+
 public abstract class DataSetImpl implements DataSet {
-
-	@PersistenceContext(name="dbpoee")
-	protected EntityManager entityManager;
 	
-
-	public DataSetImpl salvar(DataSet obj) {
+	@PersistenceContext(name="dbpoee")
+	private EntityManager entityManager;
+	
+	public DataSetImpl salvar(DataSet obj) throws IOException {
 		
-		entityManager.merge(obj);
+		if (obj.getId() == null) {
+		
+			entityManager.persist(obj);
+		
+		}else{
+			
+			entityManager.merge(obj);
+			
+		}
 		
 		entityManager.flush();
-		
+		entityManager.clear();
+				
 		return (DataSetImpl) obj;
 		
 	}
-
-
+	
 	public DataSet getById(Long p_id) {
 		
 		try{

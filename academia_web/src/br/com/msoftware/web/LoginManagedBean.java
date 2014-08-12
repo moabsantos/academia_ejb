@@ -10,14 +10,14 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.msoftware.padrao.Login;
-import br.com.msoftware.padrao.MS_Dominio;
+import br.com.msoftware.padrao.MS_Dominio_Empresas;
 
 @ManagedBean(name="login")
 @RequestScoped
 public class LoginManagedBean extends PadraoManagedBean {
 
 	@EJB private Login ejbLogin;
-	@EJB private MS_Dominio ejbDominio;
+	@EJB private MS_Dominio_Empresas ejbDominio;
 	
 	private String nomeUsuario;
 	private String senhaUsuario;
@@ -115,7 +115,7 @@ public class LoginManagedBean extends PadraoManagedBean {
 		return this.dominios;
 		
 	}
-
+	
 	@Override
 	public void novo() throws IOException {
 		// TODO Auto-generated method stub
