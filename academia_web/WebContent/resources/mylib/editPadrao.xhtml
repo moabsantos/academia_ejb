@@ -11,7 +11,7 @@
         <cc:attribute name="nome" required="true" type="String"/>
         <cc:attribute name="valor" required="true" type="String"/>
         <cc:attribute name="legenda" required="true" type="String"/>
-        <cc:attribute name="soleitura" required="false" type="String" default="false"/>
+        <cc:attribute name="soleitura" required="false" type="Boolean" default="false"/>
         <cc:attribute name="tamanho" required="true" type="String" default="30"/>
         <cc:attribute name="requerido" required="false" type="String" default="false"/>
     </cc:interface>
@@ -23,7 +23,7 @@
 	    		<br/>
 
 				<p:inputText id="#{cc.attrs.nome}" value="#{cc.attrs.valor}" label="#{cc.attrs.legenda}" 
-					size="#{cc.attrs.tamanho}" required="#{cc.attrs.requerido}" readonly="#{cc.attrs.soleitura}" />
+					size="#{cc.attrs.tamanho}" required="#{cc.attrs.requerido}" readonly="#{cc.attrs.soleitura}"/>
 
 				
 

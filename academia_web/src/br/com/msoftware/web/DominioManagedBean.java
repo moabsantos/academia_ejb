@@ -6,35 +6,21 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.primefaces.event.SelectEvent;
 
-import br.com.msoftware.padrao.MS_Dominio_Empresas;
+import br.com.msoftware.padrao.MS_Acesso_Dominio;
 
 @ManagedBean(name="dominio")
-@RequestScoped
+@ViewScoped
 public class DominioManagedBean extends PadraoManagedBean {
 
-	@EJB private MS_Dominio_Empresas ejbDominio;
-	private List<?> listaDominios;
-	private MS_Dominio_Empresas objDominio;
+	@EJB private MS_Acesso_Dominio ejbDominio;
 	
-	public void salvar(){	
-	    	
-        try{
-        	
-        	this.setObjDominio((MS_Dominio_Empresas) ejbDominio.salvar(this.getObjDominio()));
-    			
-    		this.addMensagem( FacesMessage.SEVERITY_WARN, "Welcome ", "Dominio Salvo");
-	        
-        }catch(Exception e){
-        	
-        	this.addMensagem(FacesMessage.SEVERITY_ERROR, "Erro ao salvar: ", e.getMessage());
-        	
-        }
-		
-	}
+	private MS_Acesso_Dominio objDominio;
+	
+	private List<?> listaDominios;
 
 	public void novo() throws IOException {
 		
@@ -42,14 +28,25 @@ public class DominioManagedBean extends PadraoManagedBean {
 		
 	}
 
-	public void cancelar() throws IOException {
+	public void salvar() throws Exception{
 		
-		this.setObjDominio((MS_Dominio_Empresas) ejbDominio.getById(objDominio.getId()));
+		ejbDominio.salvar(objDominio, this.getObjAcesso());
 		
 	}
-
+	
 	public void excluir() throws IOException {
-		// TODO Auto-generated method stub
+		
+		try{
+		
+			this.setObjDominio((MS_Acesso_Dominio) ejbDominio.excluir(this.getObjDominio()));
+		
+			this.addMensagem( FacesMessage.SEVERITY_WARN, "Welcome ", "Dominio Salvo");
+			
+		}catch(Exception e){
+			
+			this.addMensagem(FacesMessage.SEVERITY_ERROR, "Erro ao salvar: ", e.getMessage());
+			
+		}
 		
 	}
 	
@@ -61,26 +58,32 @@ public class DominioManagedBean extends PadraoManagedBean {
 		
 	}
 
-	public MS_Dominio_Empresas getObjDominio() {
+	public MS_Acesso_Dominio getObjDominio() {
 		
 		if (this.objDominio == null){
 			
-			this.setObjDominio((MS_Dominio_Empresas) ejbDominio.novoObjeto());
+			this.setObjDominio((MS_Acesso_Dominio) ejbDominio.novoObjeto());
 			
 		}
 		
 		return this.objDominio;
 	}
 
-	public void setObjDominio(MS_Dominio_Empresas objDominio) {
+	public void setObjDominio(MS_Acesso_Dominio objDominio) {
 		
 		this.objDominio = objDominio;
 		
 	}
 	
+	/* *
+	 * 
+	 * EVENTOS RELACIONADOS AO FORMULÁRIO
+	 * 
+	 * */
+	
 	public void onRowSelect(SelectEvent event) {
 		
-        this.setObjDominio((MS_Dominio_Empresas) event.getObject());
+        this.setObjDominio((MS_Acesso_Dominio) event.getObject());
         
     }
 

@@ -9,28 +9,10 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class ModalidadeManagedBean extends PadraoManagedBean {
 
-	@Override
-	public void salvar() throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
+	public ModalidadeManagedBean() throws IOException {
 
-	@Override
-	public void novo() throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
+		super();
 
-	@Override
-	public void cancelar() throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void excluir() throws IOException {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

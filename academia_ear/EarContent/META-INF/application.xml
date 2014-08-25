@@ -5,7 +5,7 @@
   <module>
     <web>
       <web-uri>academia_web.war</web-uri>
-      <context-root>academia_web</context-root>
+      <context-root>/academia_web</context-root>
     </web>
   </module>
   <module>

@@ -23,20 +23,22 @@
             <div class="Content66 floatLeft overHidden">
             	<h:form id="form1">
             		<p:growl id="growl" showDetail="true" autoUpdate="true"/>
-				    <p:panel id="pnlForm1" header="Domínio" footer="* Campos obrigatórios">
+				    <p:panel id="pnlForm1" header="Filtros para Consulta: Domínio" footer="* Campos obrigatórios">
     				
 				        <h:panelGrid id="grdForm1" columns="1" cellpadding="5" >
-							<edt:editPadrao nome="iddominio" valor="#{dominio.objDominio.id}" legenda="Id" tamanho="10"/>
-				            <edt:editPadrao nome="nomedominio" valor="#{dominio.objDominio.nome}" legenda="Nome do Domínio" requerido="true"/>
-				            <edt:editPadrao nome="obsdominio" valor="#{dominio.objDominio.observacao}" legenda="Observação" requerido="true" tamanho="80"/>
+				        	<h:inputHidden value="#{dominio.objDominio.id}"/>
+				        	<edt:editPadrao nome="iddominio" valor="#{dominio.objDominio.id}" legenda="Id" soleitura="true" tamanho="10" />
+				            <edt:editPadrao nome="nomedominio" valor="#{dominio.objDominio.nome}" legenda="Nome do Domínio" />
+				            <edt:editPadrao nome="obsdominio" valor="#{dominio.objDominio.observacao}" legenda="Observação" tamanho="80"/>
 				        </h:panelGrid>
 				 
 				 		
 				    </p:panel>
 				    
-				    <p:commandButton value="Limpar" update="pnlForm1" type="reset" icon="ui-icon-check" />
-				    <p:commandButton value="Savar" update="pnlForm1, :formTab:dominiosTab" actionListener="#{dominio.salvar}" icon="ui-icon-check" />
-				    <p:commandButton value="Excluir" update="pnlForm1, :formTab:dominiosTab" actionListener="#{dominio.excluir}" icon="ui-icon-check" />
+				    <p:commandButton value="Limpar Campos" update="pnlForm1" process="@this" icon="ui-icon-check">
+				    	<p:resetInput target="pnlForm1" />
+				    </p:commandButton>
+				    <p:commandButton value="Novo Cadastro" action="cad_dominio_empresa?faces-redirect=true;includeViewParams=true" icon="ui-icon-check" />
 				    
           		</h:form>
             </div>
@@ -49,6 +51,12 @@
 		    		selectionMode="single" selection="#{dominio.objDominio}" rowKey="#{emp.id}">
 		    	<p:ajax event="rowSelect" listener="#{dominio.onRowSelect}" update=":form1:pnlForm1" />
 		        
+		        <p:column style="width:32px;text-align: center">
+			        <p:commandButton value="Editar" action="cad_dominio_empresa?faces-redirect=true;includeViewParams=true" icon="ui-icon-check">
+			        	<f:setPropertyActionListener target="#{dominio.objDominio}" value="#{emp}"/>	    	
+					</p:commandButton>
+						
+		        </p:column>
 		        <p:column style="width:10%">  
 		        	<f:facet name="header">  
 		            	Id  

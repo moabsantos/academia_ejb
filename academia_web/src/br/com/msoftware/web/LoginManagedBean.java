@@ -1,136 +1,84 @@
 package br.com.msoftware.web;
 
-import java.io.IOException;
-import java.util.List;
-
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.msoftware.padrao.Login;
-import br.com.msoftware.padrao.MS_Dominio_Empresas;
+import br.com.msoftware.padrao.MS_Acesso_Controle;
+import br.com.msoftware.padrao.MS_Acesso_Usuario;
 
 @ManagedBean(name="login")
 @RequestScoped
 public class LoginManagedBean extends PadraoManagedBean {
 
-	@EJB private Login ejbLogin;
-	@EJB private MS_Dominio_Empresas ejbDominio;
+	@EJB private MS_Acesso_Usuario ejbUsuario;
 	
-	private String nomeUsuario;
-	private String senhaUsuario;
-	private List<?> dominios;
+	private String usuario;
+	private String senha;
 
-	public String getNomeUsuario() {
+	public String getUsuario() {
 		
-		return this.nomeUsuario;
-		
-	}
-	
-	public void setNomeUsuario(String nomeUsuario) {
-		
-		this.nomeUsuario = nomeUsuario;
+		return this.usuario;
 		
 	}
 	
-	public String getSenhaUsuario() {
+	public void setUsuario(String usuario) {
 		
-		return senhaUsuario;
-		
-	}
-	
-	public void setSenhaUsuario(String senhaUsuario) {
-		
-		this.senhaUsuario = senhaUsuario;
+		this.usuario = usuario;
 		
 	}
 	
-	public void salvar(){
+	public String getSenha() {
 		
-		Login ejbLogin2 = (Login) ejbLogin.getByString("nome", this.getNomeUsuario());
+		return senha;
 		
-		if (ejbLogin2 == null){
+	}
+	
+	public void setSenha(String senha) {
+		
+		this.senha = senha;
+		
+	}
+	
+	public void acessar() throws Exception {
+
+		MS_Acesso_Usuario objUsuario;
+
+		objUsuario = (MS_Acesso_Usuario) ejbUsuario.getByString("nome", this.getUsuario());
+
+		if (objUsuario == null){
 			
-			ejbLogin2 = (Login) ejbLogin.novoObjeto();
+			objUsuario = (MS_Acesso_Usuario) ejbUsuario.novoObjeto();
 			
-		}
-	    	
-        try{
-        	
-        	if (ejbLogin2 != null){
-    			
-    			if (ejbLogin2.setAutorizacao(this.getNomeUsuario(), this.getSenhaUsuario())){
-    			
-    				ejbLogin.salvar(ejbLogin2);
-    			
-    				this.addMensagem( FacesMessage.SEVERITY_WARN, "Welcome ", this.getNomeUsuario());
-    				
-    			}
-    			
-    		}else{
-    			
-    			this.addMensagem(FacesMessage.SEVERITY_ERROR, "Erro ao salvar: ", "Motivo não identificado");
-    			
-    		}
-        	
-	        
-        }catch(Exception e){
-        	
-        	this.addMensagem(FacesMessage.SEVERITY_ERROR, "Erro ao salvar: ", e.getMessage());
-        	
-        }
-		
-	}
-	
-	public void acessar() throws IOException {
-		
-		Login ejbLogin2 = (Login) ejbLogin.getByString("nome", this.getNomeUsuario());
-		
-		if (ejbLogin2 == null){
-			
-			ejbLogin2 = (Login) ejbLogin.novoObjeto();
+			if (this.getUsuario().equals("admin")){
+				
+				objUsuario = (MS_Acesso_Usuario) ejbUsuario.setAutorizacao(this.getUsuario(), this.getSenha(), objUsuario);
+				
+			}
 			
 		}
 		
-		this.addMensagem( FacesMessage.SEVERITY_WARN, "Welcome ", this.getNomeUsuario() + this.getSenhaUsuario());
-		
-		if ( ejbLogin2.getAutorizacao(this.getNomeUsuario(), this.getSenhaUsuario()) ) {
+		if ( objUsuario.getAutorizacao(this.getUsuario(), this.getSenha()) ) {
+			
+			addItemSessao("usuario", objUsuario.getId());
+			
+			String v_ip = this.getmeuIP();
+			String v_sessao = this.getminhaSession();
+ 
+			this.setObjAcesso((MS_Acesso_Controle) ejbAcesso.getById(objUsuario.getId()));
+			
+			this.getObjAcesso().setId(objUsuario.getId());
+			
+			this.ejbAcesso.setDadosConexao(v_ip, v_sessao, this.getObjAcesso());
 			
 			FacesContext.getCurrentInstance().getExternalContext().redirect("../../index.xhtml");
 			
-		}
-		
-	}
-	
-	public List<?> getDominios(){
-		
-		if (this.dominios == null) {			
+		}else{
 			
-			this.dominios = ejbDominio.listaCompleta();
+			FacesContext.getCurrentInstance().getExternalContext().redirect("../../conexao/acesso/usuario_login.xhtml");
 			
 		}
-		
-		return this.dominios;
-		
-	}
-	
-	@Override
-	public void novo() throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void cancelar() throws IOException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void excluir() throws IOException {
-		// TODO Auto-generated method stub
 		
 	}
 	

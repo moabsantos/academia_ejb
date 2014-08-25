@@ -21,43 +21,19 @@
             </div>
 
             <div class="Content66 floatLeft overHidden">
+            
             	<h:form id="form1">
-            	
-				    <p:panel id="panel" header="Dados de Acesso" footer="* Campos obrigatórios">
-
-            	   		<p:messages id="msgs" globalOnly="true" showDetail="true" autoUpdate="true" closable="true" />    				
-				    							 				 
-				        <h:panelGrid columns="3" cellpadding="5">
-
-							<p:outputLabel for="empresausuario" value="Empresa" />
-				            <p:selectOneMenu effect="fade" id="empresausuario">				            
-						         <f:selectItems value="#{login.dominios}"
-						                var="emp"
-						                itemLabel="#{emp.nome}"
-						                itemValue="#{emp.id}"
-						         />
-							</p:selectOneMenu>
-				            <p:message for="empresausuario" />
-
-
-				            <edt:editPadrao nome="nomeusuario" valor="#{login.nomeUsuario}" legenda="Usuário"/>
-
-							<p:outputLabel for="senhausuario" value="Senha" />
-					            <p:password id="senhausuario" value="#{login.senhaUsuario}" label="Senha">
-					                <f:validateLength minimum="2" />
-					            </p:password>
-				            <p:message for="senhausuario" display="icon" />
-				            
-
+            		<p:growl id="growl" showDetail="true" autoUpdate="true"/>
+				    <p:panel id="pnlForm1" header="Domínio" footer="* Campos obrigatórios">
+				        <h:panelGrid id="grdForm1" columns="1" cellpadding="5" >
+				            <edt:editPadrao nome="usuario" valor="#{login.usuario}" legenda="Usuário" requerido="true"/>
+				            <edt:editPadrao nome="senha" valor="#{login.senha}" legenda="Senha" requerido="true" tamanho="80"/>
 				        </h:panelGrid>
-				 
-				        <p:commandButton value="Save" update="panel" actionListener="#{login.salvar}" icon="ui-icon-check" />
-				        
-				        <p:commandButton value="Acessar" update="panel" actionListener="#{login.acessar}" icon="ui-icon-check" />
-				        
 				    </p:panel>
+
+				    <p:commandButton value="Acessar" update="form1" actionListener="#{login.acessar}" icon="ui-icon-check" />
 				    
-                </h:form>
+          		</h:form>
             </div>
             
         </div>
