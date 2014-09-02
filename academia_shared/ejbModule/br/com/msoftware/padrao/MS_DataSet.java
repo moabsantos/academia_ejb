@@ -15,6 +15,7 @@ public interface MS_DataSet {
 	public MS_DataSet getByString(String p_parametro, String p_valor);
 	public List<?> listByString(String p_parametro, String p_valor);
 	public List<?> listaCompleta();
+	public List<?> consultar(MS_DataSet obj) throws IllegalArgumentException, IllegalAccessException;
 	
 	public MS_DataSet novoObjeto();
 	

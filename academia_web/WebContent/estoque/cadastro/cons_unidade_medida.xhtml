@@ -27,18 +27,18 @@
     				
 				        <h:panelGrid id="grdForm1" columns="1" cellpadding="5" >
 				        	<h:inputHidden value="#{dominio.objDominio.id}"/>
-				        	<edt:editPadrao nome="iddominio" valor="#{dominio.objDominio.id}" legenda="Id" tamanho="10" />
-				            <edt:editPadrao nome="nomedominio" valor="#{dominio.objDominio.nome}" legenda="Nome do Domínio" />
-				            <edt:editPadrao nome="obsdominio" valor="#{dominio.objDominio.observacao}" legenda="Observação" tamanho="80"/>
+				        	<edt:editPadrao nome="iddominio" valor="#{unidademedida.objUnidadeMedida.id}" legenda="Id" tamanho="10" />
+				            <edt:editPadrao nome="nomedominio" valor="#{unidademedida.objUnidadeMedida.nome}" legenda="Nome do Domínio" />
+				            <edt:editPadrao nome="obsdominio" valor="#{unidademedida.objDUnidadeMedida.observacao}" legenda="Observação" tamanho="80"/>
 				        </h:panelGrid>
 				 
 				 		
 				    </p:panel>
 				    
-				    <p:commandButton value="Limpar Pesquisa" update="pnlForm1,:formTab:dominiosTab" actionListener="#{dominio.novo}" icon="ui-icon-document" />
-				    <p:commandButton value="Iniciar Pesquisa" update=":formTab:dominiosTab" actionListener="#{dominio.consultar}" icon="ui-icon-search" />
-				    <p:commandButton value="Novo Cadastro" action="cad_dominio_empresa?faces-redirect=true" actionListener="#{dominio.novo}" icon="ui-icon-note" />
-				    <p:commandButton value="Editar Cadastro" action="cad_dominio_empresa?faces-redirect=true" icon="ui-icon-pencil" />
+				    <p:commandButton value="Limpar Pesquisa" update="pnlForm1,:formTab:dominiosTab" actionListener="#{unidademedida.novo}" icon="ui-icon-document" />
+				    <p:commandButton value="Iniciar Pesquisa" update=":formTab:dominiosTab" actionListener="#{unidademedida.consultar}" icon="ui-icon-search" />
+				    <p:commandButton value="Novo Cadastro" action="cad_dominio_empresa?faces-redirect=true" actionListener="#{unidademedida.novo}" icon="ui-icon-note" />
+				    <p:commandButton value="Editar Cadastro" action="cad_unidade_medida?faces-redirect=true" icon="ui-icon-pencil" />
 				    
           		</h:form>
             </div>
@@ -47,54 +47,32 @@
 	    <div class="ContentSideSections overHidden">
 			<h:form id="formTab">
 		    <p:growl id="growl" showDetail="true" autoUpdate="true"/>
-		    <p:dataTable id="dominiosTab" var="emp" value="#{dominio.listaDominios}" 
-		    		selectionMode="single" selection="#{dominio.objDominio}" rowKey="#{emp.id}">
-		    	<p:ajax event="rowSelect" listener="#{dominio.onRowSelect}" update=":form1:pnlForm1" />
+		    <p:dataTable id="resultadoTab" var="unid" value="#{unidademedida.listaUnidadeMedida}" 
+		    		selectionMode="single" selection="#{unidademedida.objUnidadeMedida}" rowKey="#{emp.id}">
+		    	<p:ajax event="rowSelect" listener="#{unidademedida.onRowSelect}" update=":form1:pnlForm1" />
 
 		        <p:column style="width:10%">  
 		        	<f:facet name="header">  
 		            	Id  
 		         	</f:facet>  
-		            <h:outputText value="#{emp.id}" />  
+		            <h:outputText value="#{unid.id}" />  
 		        </p:column>
 		        
 		        <p:column style="width:29%">  
 		        	<f:facet name="header">  
 		            	Nome  
 		         	</f:facet>  
-		            <h:outputText value="#{emp.nome}" />  
+		            <h:outputText value="#{unid.nome}" />  
 		        </p:column>
 	        
 	        	<p:column style="width:49%">  
 		        	<f:facet name="header">  
 		            	Observação  
 		         	</f:facet>  
-		            <h:outputText value="#{emp.observacao}" />  
+		            <h:outputText value="#{unid.observacao}" />  
 		        </p:column>
 	        
 	        </p:dataTable> 
-	        
-	        <h3>Export Page Data Only</h3>
-		    <h:commandLink>
-		        <p:graphicImage name="/demo/images/excel.png" />
-		        <p:dataExporter type="xls" target="dominiosTab" fileName="cars" pageOnly="true"/>
-		    </h:commandLink>
-		 
-		    <h:commandLink>
-		        <p:graphicImage name="/demo/images/pdf.png" />
-		        <p:dataExporter type="pdf" target="dominiosTab" fileName="cars" pageOnly="true" />
-		    </h:commandLink>
-		 
-		    <h:commandLink>
-		        <p:graphicImage name="/demo/images/csv.png" />
-		        <p:dataExporter type="csv" target="dominiosTab" fileName="cars" pageOnly="true" />
-		    </h:commandLink>
-		 
-		    <h:commandLink>
-		        <p:graphicImage name="/demo/images/xml.png" />
-		        <p:dataExporter type="xml" target="dominiosTab" fileName="cars" pageOnly="true" />
-		    </h:commandLink>
-	        
 			</h:form>	
 		</div>   
 		

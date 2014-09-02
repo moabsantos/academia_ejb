@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+    xmlns:edt="http://java.sun.com/jsf/composite/mylib"
+	template="/WEB-INF/template.xhtml">
+    
+    <ui:define name="content">
+    
+        <h:outputScript name="main/js/index.js" target="head" />
+
+        <!-- pfnextgen start-->
+        <div class="ContentSideSections overHidden PFNextGen">
+        
+            <div class="Content33 floatLeft overHidden TextShadow">
+                <span class="fontSize30 TextShadow gray mediumFont marginBottom20 dispBlock">MS<span class="orange">Domínio</span></span>
+                <span class="defaultText dispTable">O acesso ao sistema é restrito ao usuário cadastrado.</span>
+                <br />
+                <span class="defaultText dispTable">As permissões devem ser definidas no momento do cadastro.</span>
+            </div>
+
+            <div class="Content66 floatLeft overHidden">
+            	<h:form id="form1">
+            		<p:growl id="growl" showDetail="true" autoUpdate="true"/>
+				    <p:panel id="pnlForm1" header="Domínio" footer="* Campos obrigatórios">
+    				
+				        <h:panelGrid id="grdForm1" columns="1" cellpadding="5" >
+				        	<h:inputHidden value="#{dominio.objDominio.id}"/>
+				        	<edt:editPadrao nome="iddominio" valor="#{dominio.objDominio.id}" legenda="Id" requerido="true" soleitura="true" tamanho="10" />
+				            <edt:editPadrao nome="nomedominio" valor="#{dominio.objDominio.nome}" legenda="Nome do Domínio" requerido="true"/>
+				            <edt:editPadrao nome="obsdominio" valor="#{dominio.objDominio.observacao}" legenda="Observação" requerido="true" tamanho="80"/>
+				        </h:panelGrid>
+				 
+				 		
+				    </p:panel>
+				    
+				    <p:commandButton value="Limpar Campos" update="pnlForm1" actionListener="#{dominio.novo}" icon="ui-icon-document" />
+				    <p:commandButton value="Savar Dados" update="pnlForm1" actionListener="#{dominio.salvar}" icon="ui-icon-disk" />
+				    <p:commandButton value="Excluir Cadastro" update="pnlForm1" actionListener="#{dominio.excluir}" icon="ui-icon-trash" />
+				    <p:commandButton value="Nova Consulta" action="cons_dominio_empresa?faces-redirect=true" actionListener="#{dominio.novo}" immediate="true" icon="ui-icon-arrowreturnthick-1-w" />
+				    
+          		</h:form>
+            </div>
+        </div>   
+		     
+        <!-- pfnextgen end-->
+	
+    </ui:define>
+ 	     
+</ui:composition>
