@@ -1,0 +1,112 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+    xmlns:edt="http://java.sun.com/jsf/composite/mylib"
+	template="/WEB-INF/template.xhtml">
+    
+    <ui:define name="content">
+    
+        <h:outputScript name="main/js/index.js" target="head" />
+
+        <!-- pfnextgen start-->
+   		<div class="ContentSideSections">
+                    <div class="Content100 overHidden TextShadow">
+                        <span class="fontSize30 TextShadow orange mediumFont marginBottom20 dispBlock">
+        					Estoque - <span class="subitem">Pré-Cadastro</span>
+        				</span>
+                        <span class="defaultText dispTable">
+        					Cadastros obrigatórios para um correto controle de estoque.
+                        </span>
+                    </div>
+        </div>
+        
+        
+        <div id="SourceContentSide" class="ContentSideSections Source">
+        <div class="Content100 overHidden TextShadow">
+	        <p:tabView scrollable="true">
+		        <p:tab title="Unidade de Medida">
+
+					<div class="ContentSideSections overHidden">
+		            	
+		            	<h:form id="form1">
+		            		<p:growl id="growl" showDetail="true" autoUpdate="true"/>
+						    <p:panel id="pnlForm1" header="Filtros para Consulta: Domínio" footer="* Campos obrigatórios">
+		    				
+						        <h:panelGrid id="grdForm1" columns="1" cellpadding="5" >
+						        	<h:inputHidden value="#{unidademedida.objUnidadeMedida.id}"/>
+						        	<edt:editPadrao nome="iddominio" valor="#{unidademedida.objUnidadeMedida.id}" legenda="Id" tamanho="10" />
+						            <edt:editPadrao nome="nomedominio" valor="#{unidademedida.objUnidadeMedida.nome}" legenda="Nome do Domínio" />
+						            <edt:editPadrao nome="obsdominio" valor="#{unidademedida.objUnidadeMedida.observacao}" legenda="Observação" tamanho="80"/>
+						        </h:panelGrid>
+						 
+						 		
+						    </p:panel>
+						    
+						    <p:commandButton value="Limpar Pesquisa" update="pnlForm1" actionListener="#{unidademedida.novo}" icon="ui-icon-document" />
+						    <p:commandButton value="Iniciar Pesquisa" update="" actionListener="#{unidademedida.consultar}" icon="ui-icon-search" />
+						    <p:commandButton value="Novo Cadastro" action="cad_dominio_empresa?faces-redirect=true" actionListener="#{unidademedida.novo}" icon="ui-icon-note" />
+						    <p:commandButton value="Editar Cadastro" action="cad_unidade_medida?faces-redirect=true" icon="ui-icon-pencil" />
+						    
+		          		</h:form>
+		          	</div>
+		          		
+	          		<div class="ContentSideSections overHidden">
+						<h:form id="formTab">
+					    <p:growl id="growl" showDetail="true" autoUpdate="true"/>
+					    <p:dataTable id="resultadoTab" var="unid" value="#{unidademedida.listaUnidadeMedida}" 
+					    		selectionMode="single" selection="#{unidademedida.objUnidadeMedida}" rowKey="#{unid.id}">
+					    	<p:ajax event="rowSelect" listener="#{unidademedida.onRowSelect}" update="" />
+			
+					        <p:column style="width:10%">  
+					        	<f:facet name="header">  
+					            	Id  
+					         	</f:facet>  
+					            <h:outputText value="#{unid.id}" />  
+					        </p:column>
+					        
+					        <p:column style="width:29%">  
+					        	<f:facet name="header">  
+					            	Nome  
+					         	</f:facet>  
+					            <h:outputText value="#{unid.nome}" />  
+					        </p:column>
+				        
+				        	<p:column style="width:49%">  
+					        	<f:facet name="header">  
+					            	Observação  
+					         	</f:facet>  
+					            <h:outputText value="#{unid.observacao}" />  
+					        </p:column>
+				        
+				        </p:dataTable> 
+						</h:form>	
+					</div>
+		        
+		        </p:tab>
+		        <p:tab title="Grupo de Mercadoria">Tab 2 Content</p:tab>              
+	    	</p:tabView>
+        </div>
+        
+        <p:dock position="bottom">
+    <p:menuitem value="Home" icon="/resources/demo/images/dock/home.png" url="#"/>
+    <p:menuitem value="Music" icon="/resources/demo/images/dock/music.png" url="#">
+	    <p:stack icon="/resources/demo/images/dock/stack.png" expanded="true">
+	    <p:menuitem value="Home" icon="/resources/demo/images/dock/home.png" url="#"/>
+	    <p:menuitem value="Music" icon="/resources/demo/images/dock/music.png" url="#"/>
+	    <p:menuitem value="Video" icon="/resources/demo/images/dock/video.png" url="#"/>
+	    <p:menuitem value="Email" icon="/resources/demo/images/dock/email.png" url="#"/>
+	    <p:menuitem value="Portfolio" icon="/resources/demo/images/dock/portfolio.png" url="#"/>
+		</p:stack>
+    </p:menuitem>
+    <!-- more menuitems -->
+</p:dock>
+
+        </div>
+		     
+        <!-- pfnextgen end-->
+	
+    </ui:define>
+ 	     
+</ui:composition>

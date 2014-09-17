@@ -12,8 +12,15 @@ version="2.1">
 		<class>br.com.msoftware.padrao.MS_Acesso_Usuario_Impl</class>
 		<class>br.com.msoftware.padrao.MS_Classe_Padrao_Impl</class>
 		<class>br.com.msoftware.padrao.MS_Estoque_Unidade_Medida_Impl</class>
+		<class>br.com.msoftware.academia.MS_Academia_Aluno_Impl</class>
+		<class>br.com.msoftware.padrao.MS_Pessoa_Geral_Impl</class>
+		<class>br.com.msoftware.padrao.MS_Geral_Sexo_Impl</class>
+		<class>br.com.msoftware.padrao.MS_Geral_Tipo_Documento_Impl</class>
+		<class>br.com.msoftware.padrao.MS_Geral_Tipo_Contato_Impl</class>
+		<class>br.com.msoftware.padrao.MS_Geral_Tipo_Endereco_Impl</class>
+		<class>br.com.msoftware.academia.MS_Academia_Modalidade_Impl</class>
 		<properties>
-			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
+			<property name="eclipselink.ddl-generation" value="create-tables" />
 			<!--
 			<property name="eclipelink.jdbc.url" value="jdbc:mysql://localhost:3306/dbpoee" />
 			<property name="eclipelink.jdbc.user" value="root" />

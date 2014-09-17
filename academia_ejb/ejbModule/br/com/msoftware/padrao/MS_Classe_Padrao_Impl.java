@@ -3,10 +3,12 @@ package br.com.msoftware.padrao;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-abstract class MS_Classe_Padrao_Impl extends MS_DataSet_Impl implements MS_Classe_Padrao {
+public abstract class MS_Classe_Padrao_Impl extends MS_DataSet_Impl implements MS_Classe_Padrao {
 
 	protected Long id;
 	protected String nome;
+	protected String sigla;
+	protected String nome_reduzido;
 	protected String observacao;
 	
 	protected int flag_ativo;
@@ -149,6 +151,30 @@ abstract class MS_Classe_Padrao_Impl extends MS_DataSet_Impl implements MS_Class
 			return p_obj;
 			
 		}
+		
+	}
+
+	public String getSigla() {
+		
+		return sigla;
+		
+	}
+
+	public void setSigla(String sigla) {
+		
+		this.sigla = sigla;
+		
+	}
+
+	public String getNome_reduzido() {
+		
+		return nome_reduzido;
+		
+	}
+
+	public void setNome_reduzido(String nome_reduzido) {
+		
+		this.nome_reduzido = nome_reduzido;
 		
 	}
 

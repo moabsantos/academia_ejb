@@ -26,8 +26,8 @@ public class MS_Estoque_Unidade_Medida_Impl extends MS_Classe_Padrao_Impl implem
 		return id;
 	}
 	
-	public MS_Acesso_Dominio_Impl novoObjeto() {
-		return new MS_Acesso_Dominio_Impl();
+	public MS_Estoque_Unidade_Medida_Impl novoObjeto() {
+		return new MS_Estoque_Unidade_Medida_Impl();
 	}
 
 	public Long getIdOrigem() {
